@@ -3,9 +3,11 @@
 문제 링크  
 <http://tech.kakao.com/2017/09/27/kakao-blind-recruitment-round-1/>
 
-풀이는 전부 Python
+풀이는 전부 Python  
 코드 링크 : <https://github.com/senel-study/kosmo-3rd/tree/master/s.yoon/KaKao>  
-(_my : 내 코드, _answer : 인터넷에 있는 풀이 코드 )
+(_my : 내 코드, _answer : 인터넷에 있는 풀이 코드 )  
+
+---
 
 1번 문제(비밀 지도)  
 코딩도장 링크 : <http://codingdojang.com/scode/570>  
