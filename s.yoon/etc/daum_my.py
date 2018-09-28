@@ -17,4 +17,3 @@ def distance(dot_list):
 dot_list = [1,3,4,8,13,17,20]
 result = distance(dot_list)
 print(result)
-
