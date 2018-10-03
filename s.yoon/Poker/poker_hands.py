@@ -26,13 +26,14 @@ def separte_hand(hand):
 def made(hand):
     
     mark =  set([x[1] for x in hand])
-    isFlush = False
-    if len(mark) is 1:
-        isFlush = True
     num =  [x[0] for x in hand]
     index = ["A","2","3","4","5","6","7","8","9","10","11","12","13","A"]  
     cnt = [num.count(x) for x in index]
 
+    isFlush = False
+    if len(mark) is 1: # 플러쉬
+        isFlush = True
+  
     for i, x in enumerate(cnt):
         if x:
             top = index[i]
