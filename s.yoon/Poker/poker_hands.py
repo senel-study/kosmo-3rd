@@ -9,9 +9,10 @@ test_list = [
 def poker_hands(code):
     code = code.replace("J","11").replace("Q","12").replace("K","13")
     black_hand, white_hand = separte_user(code)
-    result = made(white_hand)
+    black_made = made(black_hand)
+    white_made = made(white_hand)
+    result = judge(black_made, white_made)
     return result
-    
 
 def separte_user(code):
     hand_list = code.split()
@@ -29,10 +30,101 @@ def separte_hand(hand):
     return hand_list
 
 def made(hand):
+    
     mark =  set([x[1] for x in hand])
+    isFlush = False
     if len(mark) is 1:
-        return "Flush"
+        isFlush = True
+    num =  [x[0] for x in hand]
+    index = ["A","2","3","4","5","6","7","8","9","10","11","12","13","A"]  
+    cnt = [num.count(x) for x in index]
 
-# result = [ poker_hands(s) for s in test_list ]
-result = poker_hands("2H AS 4C 2D 4H 2S 8S AS QS 3S")
+    for i, x in enumerate(cnt):
+        if x:
+            top = index[i]
+
+    isStraight = False
+    isMoutain = False
+    line = 0
+    for i, x in enumerate(cnt): # 스트레이트
+        if x:
+            line+=1
+            if line is 5:
+                isStraight = True
+                top = index[i]
+                if index[i] == "A":
+                    isMoutain = True
+        else:
+            line = 0
+               
+    if isFlush:
+        if isStraight:
+            if isMoutain:
+                return "RSF", top
+            else:
+                return "SF", top
+        else:
+            return "FL", top
+    
+    isQuad = False # 포카드
+    for i, x in enumerate(cnt):
+        if x == 4:
+            isQuad = True
+            top = index[i]
+    if isQuad:
+        return "QU", top
+
+    index.pop(0)
+    cnt.pop(0)  # 스트레이트 연산이 끝났으니 에이스는 1의 역할이 필요 없으니 지움.
+
+    pair = 0 # 페어
+    for i, x in enumerate(cnt):
+        if x == 2:
+            pair+=1
+            top = index[i]
+
+    isTriple = False # 트리플
+    for i, x in enumerate(cnt):
+        if x == 3:
+            isTriple = True
+            top = index[i]
+    
+    if isTriple:
+        if pair > 0 :
+            return "FU", top
+        else:
+            return "TR", top
+    
+    if pair is 2:
+        return "TP", top
+    elif pair is 1:
+        return "OP", top
+    else:
+        return "TOP", top
+
+def judge(black_made, white_made):
+    board = ["TOP", "OP", "TP", "TR", "ST", "FL", "FU", "QU", "SF", "RSF"]
+    balck_score = board.index(black_made[0])
+    black_top = black_made[1]
+    white_score = board.index(white_made[0])
+    white_top = white_made[1]
+    result = None
+    if balck_score > white_score:
+        result = "Black wins."
+    elif balck_score == white_score:
+        if black_top > white_top:
+            result = "Black wins."
+        elif black_top == white_top:
+            result = "Tie."
+        else:
+            result = "White wins."
+    else:
+        result = "White wins"
+    return result
+        
+
+result = [ poker_hands(s) for s in test_list ]
+result = poker_hands("10S JS QS KS 2S 3S AC AD 3H 3C")
 print(result)
+
+# RSF, SF, QU, FU, FL, ST, TR, TP, OP, TOP
