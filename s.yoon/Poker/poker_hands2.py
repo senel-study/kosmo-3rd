@@ -1,4 +1,5 @@
-#족보 체크 순서 페어 -> 스트레이트 /플러쉬
+#족보 체크 순서 스트/플 -> 페어
+
 import re
 
 import time
@@ -29,9 +30,44 @@ def separte_hand(hand):
 
 def made(hand):
     
+    mark =  set([x[1] for x in hand])
     num =  [x[0] for x in hand]
-    index = ["2","3","4","5","6","7","8","9","10","11","12","13","A"]  
+    index = ["A","2","3","4","5","6","7","8","9","10","11","12","13","A"]  
     cnt = [num.count(x) for x in index]
+
+    isFlush = False
+    if len(mark) is 1: # 플러쉬
+        isFlush = True
+  
+    for i, x in enumerate(cnt):
+        if x:
+            top = index[i]
+
+    isStraight = False
+    isMoutain = False
+    line = 0
+    for i, x in enumerate(cnt): # 스트레이트
+        if x:
+            line+=1
+            if line is 5:
+                isStraight = True
+                top = index[i]
+                if index[i] == "A":
+                    isMoutain = True
+        else:
+            line = 0
+               
+    if isFlush:
+        if isStraight:
+            if isMoutain:
+                return "RSF", top
+            else:
+                return "SF", top
+        else:
+            return "FL", top
+
+    index.pop(0)
+    cnt.pop(0)  # 스트레이트 연산이 끝났으니 에이스는 1의 역할이 필요 없으니 지움.
 
     isQuad = False # 포카드
     isTriple = False # 트리플
@@ -59,42 +95,10 @@ def made(hand):
     
     if pair is 2:
         return "TP", top
-    if pair is 1:
+    elif pair is 1:
         return "OP", top
-    
-    mark =  set([x[1] for x in hand])
-    isFlush = False
-    if len(mark) is 1: # 플러쉬
-        isFlush = True
-    for i, x in enumerate(cnt):
-        if x:
-            top = index[i]
-    isStraight = False
-    isMoutain = False
-    line = 0
-    index = ["A"] + index
-    cnt = ["A"] + cnt
-    for i, x in enumerate(cnt): # 스트레이트
-        if x:
-            line+=1
-            if line is 5:
-                isStraight = True
-                top = index[i]
-                if index[i] == "A":
-                    isMoutain = True
-        else:
-            line = 0
-               
-    if isFlush:
-        if isStraight:
-            if isMoutain:
-                return "RSF", top
-            else:
-                return "SF", top
-        else:
-            return "FL", top
-
-    return "TOP", top
+    else:
+        return "TOP", top
 
 def judge(black_made, white_made):
     board = ["TOP", "OP", "TP", "TR", "ST", "FL", "FU", "QU", "SF", "RSF"]
