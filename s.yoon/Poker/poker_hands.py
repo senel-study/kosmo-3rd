@@ -60,29 +60,27 @@ def made(hand):
                 return "SF", top
         else:
             return "FL", top
-    
-    isQuad = False # 포카드
-    for i, x in enumerate(cnt):
-        if x == 4:
-            isQuad = True
-            top = index[i]
-    if isQuad:
-        return "QU", top
 
     index.pop(0)
     cnt.pop(0)  # 스트레이트 연산이 끝났으니 에이스는 1의 역할이 필요 없으니 지움.
 
+    isQuad = False # 포카드
+    isTriple = False # 트리플
     pair = 0 # 페어
+    
     for i, x in enumerate(cnt):
         if x == 2:
             pair+=1
             top = index[i]
-
-    isTriple = False # 트리플
-    for i, x in enumerate(cnt):
         if x == 3:
             isTriple = True
             top = index[i]
+        if x == 4:
+            isQuad = True
+            top = index[i]
+        
+    if isQuad:
+        return "QU", top
     
     if isTriple:
         if pair > 0 :
