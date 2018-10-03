@@ -1,11 +1,5 @@
 import re
 
-test_list = [
-    "2H 3D 5S 9C KD 2C 3H 4S 8C AH",
-    "2H 4S 4C 2D 4H 2S 8S AS QS 3S",
-    "2H 3D 5S 9C KD 2C 3H 4S 8C KH",
-    "2H 3D 5S 9C KD 2D 3H 5C 9S KH",
-]
 def poker_hands(code):
     code = code.replace("J","11").replace("Q","12").replace("K","13")
     black_hand, white_hand = separte_user(code)
@@ -123,8 +117,13 @@ def judge(black_made, white_made):
     return result
         
 
-result = [ poker_hands(s) for s in test_list ]
-result = poker_hands("10S JS QS KS 2S 3S AC AD 3H 3C")
-print(result)
+test_list = [
+    "2H 3D 5S 9C KD 2C 3H 4S 8C AH",
+    "2H 4S 4C 2D 4H 2S 8S AS QS 3S",
+    "2H 3D 5S 9C KD 2C 3H 4S 8C KH",
+    "2H 3D 5S 9C KD 2D 3H 5C 9S KH",
+]
 
-# RSF, SF, QU, FU, FL, ST, TR, TP, OP, TOP
+result = [ poker_hands(s) for s in test_list ]
+# result = poker_hands("10S JS QS KS 2S 3S AC AD 3H 3C")
+print(result)
