@@ -66,14 +66,17 @@ def made(hand):
     isFlush = False
     if len(mark) is 1: # 플러쉬
         isFlush = True
+
+    if cnt[12]: # A가 존재한다면
+        index = ["1"] + index #A,2,3,4,5도 스트레이트(백스트레이트)이므로 리스트 맨 앞에 1을 추가
+        cnt = [1] + cnt #A의 갯수(1일 경우를 대비해서) 
+
     for i, x in enumerate(cnt):
         if x:
             top = index[i]
     isStraight = False
     isMoutain = False
     line = 0
-    index = ["A"] + index
-    cnt = ["A"] + cnt
     for i, x in enumerate(cnt): # 스트레이트
         if x:
             line+=1
