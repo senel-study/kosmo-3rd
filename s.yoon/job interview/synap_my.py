@@ -4,12 +4,12 @@ txt = "이유덕,이재영,권종표,이재영,박민호,강상희,이재영,김
 
 name_list = txt.split(',')
 
-print(name_list) # Q1
-
 p = re.compile(r'^김|이')
 kim_lee_list = [x for x in name_list if p.match(x)]
 
-print(len(kim_lee_list)) # Q2
+print(len(kim_lee_list)) # Q1
+
+print(kim_lee_list.count("이재영")) #Q2
 
 no_duple_list = list(set(name_list))
 
