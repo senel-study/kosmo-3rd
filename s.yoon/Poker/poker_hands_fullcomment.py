@@ -29,7 +29,7 @@ def made(hand):
     cnt = [num.count(x) for x in index] #한 숫자를 몇개 들었는지 표시하는 리스트
 
     isQuad = False # 포카드 트리거
-    isTriple = False # 트리플 트리ㅓㄱ
+    isTriple = False # 트리플 트리거
     pair = 0 # 페어 갯수
     
     for i, x in enumerate(cnt):
