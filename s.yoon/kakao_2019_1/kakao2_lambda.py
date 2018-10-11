@@ -5,6 +5,7 @@ def failure(n, stages):
         challenger = stages.count(i)
         fail.append([challenger/total, i])
         total-=challenger
+
     s = sorted(fail, key = lambda x: (-x[0], x[1]))
     n_fail = [x[1] for x in s]
     
