@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        tmp = 'test';
+        alert('test'==tmp);
+        alert('test'===tmp);
+    </script>
+</head>
+<body>
+    問い合わせ
+    <table class="table table-hover">
+        <thead class = "thead-dark">
+            <tr>
+                <th scope="col" width="100">#</th>
+                <th scope="col" width="150"></th>
+                <th scope="col" width="150"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">企業名</th>
+                <td><input type="text" id = "test" name="co_name"> [必須]</td>
+                <td><input type="radio" name="ra" value="c1" onclick=test()></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">部署名</th>
+                <td><input type="text" name="dept_name"> [任意]</td>
+                <td><input type="radio" name="ra" value="c2" onclick=test()></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">役職</th>
+                <td><input type="text" name="shokui"> [任意]</td>
+                <td><input type="radio" name="ra"  value="c3" onclick=test()></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">お名前（姓）</th>
+                <td><input type="text" name="family_name"> [必須]</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">お名前（名）</th>
+                <td><input type="text" name="sur_name"> [必須]</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">電話番号</th>
+                <td><input type="text" name="phone"> [必須]</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">E-maiil</th>
+                <td><input type="text" name="email"> [必須]</td>
+                <td>半角英数字</td>
+            </tr>
+            <tr>
+                <th scope="row"> お問い合わせ内容</th>
+                <td><textarea name="contents"></textarea> [必須]</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" class="btn btn-primary" value="送信" name="send"/>
+    <input type="button" class="btn btn-default" value="戻る" name="backward"/>
+</body> 
+</html>
