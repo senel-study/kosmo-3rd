@@ -2,7 +2,6 @@ participant = ["marina", "josipa", "nikola", "vinko", "filipa", "filipa"]
 completion = ["josipa", "filipa", "marina", "filipa", "nikola"]
 
 def solution(participant, completion):
-    # 동명이인검사
     answer = ''
     isDuplicated = ( len(participant) == len(set(participant)) )
 
